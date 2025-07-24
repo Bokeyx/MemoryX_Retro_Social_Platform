@@ -1,0 +1,96 @@
+services:
+  # 1. MySQL 데이터베이스 서비스 정의
+  mysql:
+    build: # <--- 이 부분 추가
+      context: ./mysql # ./mysql 디렉토리의 Dockerfile을 사용
+      dockerfile: Dockerfile # ./mysql/Dockerfile 사용
+    container_name: memoryx_mysql # 컨테이너 이름 통일
+    environment: # MySQL 환경 변수 설정
+      MYSQL_ROOT_PASSWORD: root_password # 루트 사용자의 비밀번호 (개발용이므로 간단히 설정)
+      MYSQL_DATABASE: memory_x_db        # 생성할 데이터베이스 이름 (이 변수도 유지)
+      MYSQL_USER: memoryx                # 일반 사용자 이름
+      MYSQL_PASSWORD: memoryx486         # 일반 사용자 비밀번호
+    ports: # 호스트(개발자 PC)와 컨테이너 간의 포트 매핑
+      - "3306:3306" # 호스트의 3306 포트를 컨테이너의 3306 포트(MySQL 기본 포트)에 연결
+    volumes: # 데이터 영속성을 위한 볼륨 마운트 (컨테이너가 삭제되어도 데이터는 유지)
+      - mysql_data:/var/lib/mysql # 호스트의 'mysql_data' 볼륨을 컨테이너의 MySQL 데이터 디렉토리에 연결
+      # init.sql은 이제 MySQL Dockerfile에서 복사합니다.
+      # my.cnf도 MySQL Dockerfile에서 복사합니다.
+    restart: unless-stopped # 컨테이너가 중지되면 자동으로 재시작 (명시적으로 중지하지 않는 한)
+    healthcheck: # MySQL 컨테이너가 정상적으로 실행되었는지 확인하는 헬스체크
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_password"]
+      interval: 10s # 10초마다 체크
+      timeout: 5s # 5초 안에 응답 없으면 실패
+      retries: 5 # 5번 재시도
+    # command: --init-file /docker-entrypoint-initdb.d/init.sql # command 옵션 제거 (Dockerfile에서 처리)
+
+  # 2. Spring Boot 백엔드 서비스 정의
+  backend-spring: # 서비스 이름 유지
+    build: # 이 서비스는 이미지를 Docker Hub에서 가져오는 대신, 로컬 Dockerfile을 빌드합니다.
+      context: ./backend # Spring Boot 프로젝트의 루트 디렉토리를 빌드 컨텍스트로 지정
+      dockerfile: Dockerfile # Spring Boot 프로젝트 내의 Dockerfile 이름
+    container_name: memoryx_backend_spring # 컨테이너 이름 통일
+    ports:
+      - "8080:8080" # Spring Boot 기본 포트 (호스트:컨테이너)
+    depends_on: # 이 서비스는 MySQL 서비스가 먼저 시작되고 준비될 때까지 기다립니다.
+      mysql:
+        condition: service_healthy # MySQL 헬스체크가 성공할 때까지 기다림
+    environment: # Spring Boot 애플리케이션에 전달할 환경 변수
+      # Spring Boot application.properties 또는 application.yml에서 사용할 DB 연결 정보
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/memory_x_db?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: memoryx
+      SPRING_DATASOURCE_PASSWORD: memoryx486
+      SPRING_JPA_HIBERNATE_DDL_AUTO: none # <--- 이 라인을 추가하여 ddl-auto를 'none'으로 강제합니다.
+    restart: unless-stopped
+
+  # 3. FastAPI AI 백엔드 서비스 정의
+  backend-ai:
+    build:
+      context: ./ai
+      dockerfile: Dockerfile
+    container_name: memoryx_backend_ai # 컨테이너 이름 통일
+    ports:
+      - "8000:8000" # FastAPI 기본 포트 (호스트:컨테이너)
+    environment: # FastAPI 애플리케이션에 전달할 환경 변수
+      # OpenAI API 키를 환경 변수로 전달 (보안상 권장)
+      OPENAI_API_KEY: ${OPENAI_API_KEY} # 호스트 시스템의 환경 변수를 가져옵니다.
+      # 또는 직접 키를 여기에 입력할 수도 있습니다: OPENAI_API_KEY: "sk-YOUR_ACTUAL_OPENAI_API_KEY_HERE"
+      MYSQL_HOST: mysql # Docker Compose 네트워크 내에서 MySQL 서비스 이름
+      MYSQL_DATABASE: memory_x_db
+      MYSQL_USER: memoryx
+      MYSQL_PASSWORD: memoryx486
+    restart: unless-stopped
+
+  # 4. 프론트엔드 서비스 정의
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # VITE_AI_API_URL: http://210.119.12.98:8000 # 명시적으로 IP 주소 지정
+        VITE_AI_API_URL: http://memory-x.duckdns.org:8000
+    ports:
+      - "80:80"
+    restart: always
+    container_name: memoryx_frontend # 컨테이너 이름 통일
+    depends_on: # 이 부분을 추가합니다.
+      backend-spring:
+        condition: service_started # backend-spring 서비스가 시작될 때까지 기다립니다.
+      backend-ai:
+        condition: service_started # backend-ai 서비스가 시작될 때까지 기다립니다.
+    environment:
+      # 프론트엔드에서 백엔드 API를 호출할 주소.
+      # Docker Compose 네트워크 내에서는 서비스 이름으로 접근 가능합니다.
+      # VITE_API_URL: http://backend-spring:8080 # Spring Boot 백엔드 서비스 이름에 맞춰 유지
+      # VITE_AI_API_URL: http://backend-ai:8000   
+
+      # 로컬에서 작업시 위에꺼 사용
+      # VITE_API_URL: http://210.119.12.98:8080
+      # VITE_AI_API_URL: http://210.119.12.98:8000
+
+       VITE_API_URL: http://memory-x.duckdns.org:8080
+       VITE_AI_API_URL: http://memory-x.duckdns.org:8000
+
+# Docker 볼륨 정의 (데이터 영속성을 위해 필요)
+volumes:
+  mysql_data: # MySQL 데이터가 저장될 볼륨. 호스트 머신에 생성됩니다.

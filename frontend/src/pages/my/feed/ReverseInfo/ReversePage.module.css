@@ -1,0 +1,246 @@
+.container {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f9ff;
+    font-family: 'Single Day', cursive;
+}
+
+.contentWrapper {
+    width: 320px;
+}
+
+.loadingContainer {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f9ff;
+}
+
+.errorText {
+    color: #ef4444;
+}
+
+.profileSection {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.profileImg{
+    margin: 10px;
+    text-align: center;
+}
+
+.memoryXTitle {
+    margin-bottom: 1.5rem;
+}
+
+.profileImage {
+    border: 1px solid #e2e8f0;
+    width: 6rem;
+    height: 6rem;
+    object-fit: contain;
+}
+
+.photoEditButton {
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-decoration-line: underline;
+}
+
+.hiddenFileInput {
+    display: none;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-family: 'Single Day', cursive;
+}
+
+.inputFieldContainer {
+    display: flex;
+    align-items: center;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+}
+
+.disabledInputField {
+    border: none;
+    background-color: #f5feff00;
+    padding: 3px 0px;
+    padding-left: 10px;
+}
+
+.inputFieldIcon {
+    margin-right: 0.5rem;
+}
+
+.inputField {
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+}
+
+.disabledInputField .inputField {
+    color: #6b7280;
+    cursor: not-allowed;
+}
+
+.saveButton {
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-top: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.025em;
+    color: #fff;
+    border-radius: 25px;
+    background-color: #56B7CF;
+    border: none;
+    cursor: pointer;
+}
+
+/* --- [수정 및 추가된 버튼 스타일 시작] --- */
+.actionButtonsContainer {
+    display: flex;
+    gap: 0.5rem; /* 버튼 사이 간격 */
+    width: 100%;
+}
+
+.logoutButton, .halfDeleteButton {
+    flex: 1; /* 버튼이 공간을 동일하게 차지하도록 함 */
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.logoutButton {
+    background-color: #6b7280; /* 회색 계열 */
+}
+
+.logoutButton:hover {
+    background-color: #4b5563;
+}
+
+.halfDeleteButton {
+    background-color: #ef4444; /* 빨간색 계열 */
+}
+
+.halfDeleteButton:hover {
+    background-color: #dc2626;
+}
+/* --- [수정 및 추가된 버튼 스타일 끝] --- */
+
+
+.popupOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popupContent {
+    padding: 1.5rem;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.popupText {
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.popupButton {
+    background-color: #56B7CF;
+    color: #fff;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.375rem;
+    transition-property: brightness;
+    transition-duration: 150ms;
+    transition-timing-function: ease-in-out;
+    border: none;
+    cursor: pointer;
+}
+
+.popupButton:hover {
+    filter: brightness(1.1);
+}
+
+.errorMessage {
+    color: #ef4444;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.testErrorMessage{
+    color: green;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.fieldSpacingDiv{
+    min-height: 20px;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.popupSubText {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.popupButtonsContainer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.popupCancelButton, .popupConfirmButton {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.popupCancelButton {
+    background-color: #e5e7eb;
+    color: #1f2937;
+}
+
+.popupCancelButton:hover {
+    filter: brightness(0.95);
+}
+
+.popupConfirmButton {
+    background-color: #ef4444;
+    color: white;
+}
+
+.popupConfirmButton:hover {
+    filter: brightness(1.1);
+}

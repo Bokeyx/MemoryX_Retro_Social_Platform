@@ -1,0 +1,44 @@
+[
+  {
+    "user_id": "user_001",
+    "nickname": "김철수",
+    "emotion_profile": {"positive": 0.7, "negative": 0.1, "neutral": 0.2},
+    "interests": ["영화", "음악", "여행", "드라마", "발라드", "추억"],
+    "friends": ["user_002", "user_003"]
+  },
+  {
+    "user_id": "user_002",
+    "nickname": "이영희",
+    "emotion_profile": {"positive": 0.1, "negative": 0.8, "neutral": 0.1},
+    "interests": ["독서", "게임", "음악"],
+    "friends": ["user_001", "user_004"]
+  },
+  {
+    "user_id": "user_003",
+    "nickname": "박지민",
+    "emotion_profile": {"positive": 0.5, "negative": 0.3, "neutral": 0.2},
+    "interests": ["요리", "운동", "영화"],
+    "friends": ["user_001", "user_005"]
+  },
+  {
+    "user_id": "user_004",
+    "nickname": "최현우",
+    "emotion_profile": {"positive": 0.6, "negative": 0.2, "neutral": 0.2},
+    "interests": ["여행", "사진", "음악"],
+    "friends": ["user_002"]
+  },
+  {
+    "user_id": "user_005",
+    "nickname": "정미나",
+    "emotion_profile": {"positive": 0.2, "negative": 0.7, "neutral": 0.1},
+    "interests": ["게임", "영화", "독서"],
+    "friends": ["user_003", "user_006"]
+  },
+  {
+    "user_id": "user_006",
+    "nickname": "강동원",
+    "emotion_profile": {"positive": 0.8, "negative": 0.1, "neutral": 0.1},
+    "interests": ["운동", "음악", "여행"],
+    "friends": ["user_005"]
+  }
+]

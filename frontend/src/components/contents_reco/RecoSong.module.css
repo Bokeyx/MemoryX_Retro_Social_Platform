@@ -1,0 +1,122 @@
+.recoSongHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
+
+.recoSelectTitle{
+    color: #7BA9A9;
+    cursor: pointer;
+}
+
+.refreshButton{
+    width: 20px;
+    height: 100%;
+    margin-left: 10px;
+}
+
+.selectButton {
+    background-color: #56B7CF;
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.3rem 1rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.selectButton:hover {
+    background-color: #43a2bc;
+}
+
+.recoSongContainer {
+    display: flex;
+}
+
+.loadingMessage,
+.errorMessage,
+.noResults {
+    text-align: center;
+    color: #4b5563;
+    padding: 1rem;
+    font-size: 0.9rem;
+}
+
+.songCard {
+    display: flex;
+    align-items: center;
+    background-color: #dbf3fd;
+    border-radius: 25px;
+    border: 2px solid white;
+    padding: 0.7rem;
+    position: relative;
+    align-items: center;
+    width: 100%;
+}
+
+.songInfo {
+    /* flex-grow: 1; */
+    display: flex;
+    flex-direction: column;
+    /* text-align: center; */
+    /* align-items: center; */
+    margin-left : 10px;
+}
+
+.songInfoHeader{
+    /* border: 1px solid red; */
+    display: flex;
+    width: 100%;
+}
+
+.bgmImage{
+    margin : 3px;
+}
+
+.songTitle {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 0.2rem;
+}
+
+.songArtist,
+.songReleaseDate {
+    font-size: 14px;
+    color: #555;
+}
+
+.navigationButtons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navButton {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #7BA9A9;
+    transition: color 0.2s ease-in-out;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navButton:hover:not(:disabled) {
+    color: #56B7CF;
+}
+
+.navButton:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.arrow {
+    line-height: 1;
+}

@@ -1,0 +1,9 @@
+fastapi==0.111.0
+uvicorn==0.30.1
+openai==1.91.0
+transformers==4.39.2
+torch==2.1.2
+tensorflow==2.10.1 # TensorFlow 추가
+numpy==1.26.4 # numpy 추가 (TensorFlow 2.10.1과 호환되는 버전)
+h5py # TensorFlow/Keras 모델 로딩 시 필요
+mysql-connector-python # MySQL 연결을 위해 추가

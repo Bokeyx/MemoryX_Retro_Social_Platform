@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Retro';
+  src: url('/font/RetroGaming.ttf') format('truetype');
+}
+
+.font-retro {
+  font-family: 'Retro';
+}
+
+.font-singleday {
+  font-family: 'Single Day', cursive;
+}
+
+/* ✅ 전체 배경색 공통 적용 */
+body {
+  @apply bg-baseBg;
+}
+
+/* ✅ MEMORY X 테두리 텍스트 효과 */
+.text-outline {
+  color: #BCD9D7;
+  -webkit-text-stroke: 1.2px #192E2F;
+  text-stroke: 1.2px #192E2F;
+}
+
+/* AI 분석 로딩 애니메이션 추가 (여기에 추가하면 됩니다) ********* */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 2s infinite ease-in-out;
+}
+.animate-pulse-delay-1 {
+  animation: pulse-slow 2s infinite ease-in-out 0.3s;
+}
+.animate-pulse-delay-2 {
+  animation: pulse-slow 2s infinite ease-in-out 0.6s;
+}
+@keyframes blink-cursor {
+              0%, 100% { opacity: 1; }
+              50% { opacity: 0; }
+            }
+            .animate-blink-cursor {
+              animation: blink-cursor 1s step-end infinite;
+}
+

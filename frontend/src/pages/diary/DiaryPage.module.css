@@ -1,0 +1,60 @@
+.topline{
+  border: 1px solid gray;
+}
+
+.diaryContainer{
+  /* border : 1px solid red; */
+  border-top: 1px solid #cfcfcf;
+  padding-top: 20px;
+  font-family: 'Single Day';
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.diaryHeader{
+  /* border : 1px solid yellow; */
+  margin-bottom: 10px;
+}
+
+.headingTitle{
+  font-size: 24px;
+}
+
+.diaryGuide{
+  font-size: 14px;
+  color : #666666;
+}
+
+.inputBox {
+  border-radius: 25px;
+  background-color: white;
+  border: 3px solid #C1E8FB;
+  height: 100%;
+  width: auto;
+  margin: 5px;
+  padding: 1rem 1rem;
+  box-sizing: border-box; 
+  font-size: 16px;
+  outline: none;
+  transition: border 0.1s ease;
+}
+
+.inputBox:focus {
+  border: 3px solid #56B7CF;
+}
+
+.convertButton{
+  background-color: #56B7CF;
+  color: white;
+  border-radius: 9999px;
+  width: 130px;
+  height: 40px;
+}
+
+.submitBox{
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

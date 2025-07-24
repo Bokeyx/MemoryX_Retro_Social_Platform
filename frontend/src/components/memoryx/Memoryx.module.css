@@ -1,0 +1,17 @@
+.titleContainer{
+    display: flex;
+    font-family: 'Single Day';
+    justify-content: space-between;
+    align-items: center;
+}
+.backButton{
+    width: 25px;
+}
+
+.dmIcon{
+    width: 40px;
+}
+
+.nullDiv{
+    width: 25px;
+}

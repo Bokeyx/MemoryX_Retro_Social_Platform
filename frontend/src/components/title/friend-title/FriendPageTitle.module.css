@@ -1,0 +1,96 @@
+.box{
+    /* border: 1px solid red; */
+    font-family: 'Singleday';
+    font-size: 0.75rem;
+    display: flex;
+    padding: 15px 0px;
+}
+
+.friendprofileimg{
+    object-fit: contain;
+    width: 6rem;
+    height: 6rem;
+    cursor: pointer;
+}
+
+.friendprofile{
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-grow: 1;
+    margin-left : 7px;
+}
+
+.allFont {
+  font-family: 'Singleday', sans-serif;
+}
+
+.greenbutton{
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    font-size: 12px;
+    transition: all 150ms ease-in-out;
+    border-radius: 9999px;
+    font-family: 'Single day', sans-serif;
+    background-color: #56B7CF;
+    margin : 3px;
+    color : white;
+}
+
+.buttonbox{
+    margin-left: auto;
+    display: flex;
+}
+
+/* 피드/방명록 컨트롤 */
+.divider {
+  margin-bottom: 1rem;
+  border-color: #d1d5db;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.switcherContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.viewOption {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 200ms ease-in-out;
+  gap: 10px;
+}
+
+.viewIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.viewText {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-family: 'Singleday', sans-serif;
+}
+
+.selectedOption {
+  border-bottom: 2px solid #56B7CF;
+}
+
+.selectedOption .viewText {
+  color: #1f2937;
+}
